@@ -1,13 +1,6 @@
 let myLibrary = [];
-const addBtn = document.querySelector(".add-btn");
 
-function Book(
-  title,
-  author,
-  pages,
-  status,
-  img = "images/name-of-the-wind.png"
-) {
+function Book(title, author, pages, status, img = "images/img-nf.png") {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -15,23 +8,32 @@ function Book(
   this.img = img;
 }
 
-//Creates new book object and pushes into array
-function addBookToLibrary(title, author, pages, status) {
-  let book = new Book(title, author, pages, status);
+//Creates new book object
+function addBookToLibrary(title, author, pages, status, img) {
+  let book = new Book(title, author, pages, status, img);
   return book;
 }
 
-function createBook(title, author, pages, status) {
-  let book = addBookToLibrary(title, author, pages, status);
-  const bookNumber = myLibrary.push(book) - 1;
+//Creates new book object, pushes into array and then refreshes DOM
+function createBook(title, author, pages, status, img) {
+  let book = addBookToLibrary(title, author, pages, status, img);
+  myLibrary.push(book);
+  delBooks();
+  myLibrary.forEach((item) => {
+    let index = myLibrary.indexOf(item);
+    addDivs(item.title, item.author, item.pages, item.status, item.img, index);
+  });
+}
 
+//Add book card to DOM
+function addDivs(title, author, pages, status, img, index) {
   //Create new book div
   const div = document.createElement("div");
-  div.setAttribute("class", `book book-${bookNumber}`);
+  div.setAttribute("class", `book book-${index}`);
   //Insert image
-  const img = document.createElement("img");
-  img.src = "images/name-of-the-wind.png";
-  div.appendChild(img);
+  const image = document.createElement("img");
+  image.src = img;
+  div.appendChild(image);
   //Set title
   const h2 = document.createElement("h2");
   h2.textContent = `${title}`;
@@ -52,39 +54,37 @@ function createBook(title, author, pages, status) {
   const btn = document.createElement("button");
   btn.setAttribute("class", "del-btn");
   btn.innerHTML = `<img src="images/delete.svg" alt="" style="border: none; height:20px;">`;
+  //Gets current book and deletes
   btn.addEventListener("click", () => {
     const current = document.querySelector(".book");
-    const classNm = bookNumber;
+    const classNm = index;
     myLibrary.splice(classNm, 1);
     current.remove(classNm);
     delBooks();
-
-    /*  for (i = 0; i <= myLibrary.length; i++) {
-      //createBook("The name of the wind", "Patrick Rothfuss", 662, true);
-      console.log(myLibrary[i]);
-    } */
-
-    myLibrary.forEach((bk) =>
-      createBook("The name of the wind", "Patrick Rothfuss", 662, true)
-    );
+    loadBook();
   });
   div.append(btn);
-
+  //Appends new div with all elements inside
   document.getElementById("books").appendChild(div);
 }
-
-//createBook("The name of the wind", "Patrick Rothfuss", 662, true);
-//createBook("The name of the wind2", "Patrick Rothfuss2", 662, true);
-
-addBtn.addEventListener("click", () => {
-  createBook("botao", "c", 6969, false);
-});
 
 //Deletes all books from the DOM
 function delBooks() {
   const books = document.querySelectorAll(".book");
   books.forEach((bk) => {
     bk.remove();
+  });
+}
+//Add new book button
+const addBtn = document.querySelector(".add-btn");
+addBtn.addEventListener("click", () => {
+  createBook("botao", "c", 6969, false, "images/name-of-the-wind.png");
+});
+//Iterates through the array and displays books
+function loadBook() {
+  myLibrary.forEach((item) => {
+    let index = myLibrary.indexOf(item);
+    addDivs(item.title, item.author, item.pages, item.status, item.img, index);
   });
 }
 
