@@ -1,6 +1,14 @@
 let myLibrary = [];
+const openButton = document.querySelector(".openButton");
+const closeButton = document.querySelector(".closeButton");
+const modal = document.querySelector(".modal");
+let titleBox = document.getElementById("book-title");
+let authorBox = document.getElementById("book-author");
+let pagesBox = document.getElementById("book-pages");
+let statusBox = document.querySelector('input[type="checkbox"]');
+let coverBox = document.getElementById("book-img");
 
-function Book(title, author, pages, status, img = "images/img-nf.png") {
+function Book(title, author, pages, status, img) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -78,7 +86,16 @@ function delBooks() {
 //Add new book button
 const addBtn = document.querySelector(".add-btn");
 addBtn.addEventListener("click", () => {
-  createBook("botao", "c", 6969, false, "images/name-of-the-wind.png");
+  createBook(
+    titleBox.value,
+    authorBox.value,
+    pagesBox.value,
+    statusBox.checked,
+    coverBox.value ? coverBox.value : "images/img-nf.png"
+  );
+  clearInput();
+
+  modal.close();
 });
 //Iterates through the array and displays books
 function loadBook() {
@@ -88,20 +105,54 @@ function loadBook() {
   });
 }
 
-/* const delBtn = document.getElementsByClassName("del-btn");
-delBtn.addEventListener("click", () => {
-  const current = document.querySelector(".book");
-  const classNm = current.className.slice(10);
-  console.log(classNm);
-  //console.log(current.className);
-  //current.remove();
-}); */
-
-/* myLibrary.forEach(bookTest);
-
-function bookTest(item) {
-  console.log(item);
+//Clears input values on DOM
+function clearInput() {
+  (titleBox.value = ""),
+    (authorBox.value = ""),
+    (pagesBox.value = ""),
+    (statusBox.checked = !statusBox.checked),
+    (coverBox.value = "");
 }
- */
 
-//add books manually to the array and the loop through it to create the divs
+//Modal methods
+openButton.addEventListener("click", () => {
+  modal.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+  modal.close();
+});
+
+//Close dialog if you click outside the box
+const dialog = document.querySelector("dialog");
+dialog.addEventListener("click", (e) => {
+  const dialogDimensions = dialog.getBoundingClientRect();
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    dialog.close();
+  }
+});
+
+//2 initial books
+myLibrary.push(
+  addBookToLibrary(
+    "The name of the wind",
+    "Patrick Rothfuss",
+    1663,
+    true,
+    "images/name-of-the-wind.png"
+  )
+);
+myLibrary.push(
+  addBookToLibrary(
+    "The wise man's fear",
+    "Patrick Rothfuss",
+    1332,
+    true,
+    "https://m.media-amazon.com/images/I/51QolUHRfuS.jpg"
+  )
+);

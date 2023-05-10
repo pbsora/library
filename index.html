@@ -8,20 +8,46 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&family=Ubuntu:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:ital@1&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,500;1,100&family=Ubuntu:ital@1&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body onload="loadBook()">
     <header>
         <span>Sora</span>
         <img src="images/book-icon.svg" alt="" class="book-icon">
-        <button class="add-btn">Add new book</button>
+        <button class="openButton top-button">Add new book</button>
         
         
     </header>
     <main id="books">
         
+        <dialog class="modal" >
+            <div class="modal-form">
+                <h2>Add book to page</h2>
+                <form method="dialog">
+                    <label for="book-title">Title</label>
+                    <input type="text" placeholder="Book title" id="book-title" class="book-input" required>
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" placeholder="Author" class="book-input" required>
+                    <label for="book-pages">How many pages?</label>
+                    <input type="number" placeholder="eg:334" id="book-pages" class="book-input" required>
+                    <label for="book-img">Book cover link  <i>(Not required)</i></label>
+                    <input type="text" placeholder="Book cover" id="book-img" class="book-img book-input">
+                    <div class="check">Have you read it?<label class="switch" >
+                        <input type="checkbox" id="book-status">
+                        <span class="slider round"></span>
+                    </label></div>
+                </form>
+                <div class="modal-options">
+                    <button class="closeButton btn-style">Close</button>
+                    <button class="add-btn btn-style">Add new book</button>
+        </div></div>
+        </dialog>
         
         
     </main>
+
+    
+
 </body>
 </html>
