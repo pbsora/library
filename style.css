@@ -6,6 +6,10 @@ body {
   padding-bottom: 50px;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   background-color: rgb(151, 34, 34);
   width: 100vw;
@@ -25,8 +29,8 @@ header {
 }
 
 main {
-  height: 100vh;
-  background: rgb(238, 230, 230);
+  height: auto;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
   justify-content: center;
@@ -49,10 +53,12 @@ main {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding-top: 10px;
+  padding: 20px 0px;
   font-family: Righteous;
   font-weight: 400;
   position: relative;
+  text-align: center;
+  overflow: hidden;
 }
 
 .book:hover {
@@ -61,7 +67,8 @@ main {
   opacity: 1;
 }
 
-.book:hover .del-btn {
+.book:hover .del-btn,
+.book:hover .status-btn {
   opacity: 1;
 }
 
@@ -78,7 +85,7 @@ main {
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 20px;
+  top: 12px;
   right: 50px;
   display: flex;
   align-items: center;
@@ -94,6 +101,43 @@ main {
   transition: all 0.5s ease;
 }
 
+.status-btn {
+  background-color: rgb(34, 174, 230);
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 12px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  border: none;
+  opacity: 0;
+}
+
+.status-btn:hover {
+  transform: translate3D(0, -1px, 0) scale(1.3);
+  background-color: rgb(28, 102, 131);
+  transition: all 0.5s ease;
+}
+
+.read-img {
+  color: white;
+  width: 30px;
+  height: 30px !important;
+  border: none !important;
+}
+
+.read-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .top-button {
   height: 50px;
   width: 150px;
@@ -103,7 +147,7 @@ main {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: bold;
-  background-color: rgb(151, 34, 34);
+  background-color: transparent;
   border: white 3px solid;
   color: white;
 }
@@ -127,17 +171,16 @@ main {
 }
 
 dialog {
-  height: 520px;
+  height: 530px;
   width: 400px;
   position: absolute;
   margin: 0 auto;
   top: 15vh;
   border-radius: 20px;
-  border: black 3px solid;
-
   animation: fadeInAnimation ease 0.6s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  border: none;
 }
 
 @keyframes fadeInAnimation {
@@ -238,9 +281,11 @@ input:checked + .slider:before {
 }
 
 .check {
-  margin-left: 20%;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
 }
 
 .book-input {
@@ -248,4 +293,15 @@ input:checked + .slider:before {
   margin: 5px 0;
   border-radius: 10px;
   border: 2px black solid;
+  font-size: 0.9rem;
+}
+
+.validationTxt {
+  text-align: center;
+  color: red;
+  opacity: 1;
+}
+
+.valHide {
+  opacity: 0;
 }

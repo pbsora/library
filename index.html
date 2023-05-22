@@ -15,18 +15,15 @@
     <header>
         <span>Sora</span>
         <img src="images/book-icon.svg" alt="" class="book-icon">
-        <button class="openButton top-button">Add new book</button>
-        
-        
+        <button class="openButton top-button">Add new book</button>     
     </header>
-    <main id="books">
-        
+    <main id="books">     
         <dialog class="modal" >
             <div class="modal-form">
                 <h2>Add book to page</h2>
-                <form method="dialog">
+                <form method="">
                     <label for="book-title">Title</label>
-                    <input type="text" placeholder="Book title" id="book-title" class="book-input" required>
+                    <input type="text" placeholder="Book title" id="book-title" class="book-input" required maxlength="40">
                     <label for="book-author">Author</label>
                     <input type="text" id="book-author" placeholder="Author" class="book-input" required>
                     <label for="book-pages">How many pages?</label>
@@ -34,20 +31,16 @@
                     <label for="book-img">Book cover link  <i>(Not required)</i></label>
                     <input type="text" placeholder="Book cover" id="book-img" class="book-img book-input">
                     <div class="check">Have you read it?<label class="switch" >
-                        <input type="checkbox" id="book-status">
-                        <span class="slider round"></span>
+                    <input type="checkbox" id="book-status">
+                    <span class="slider round"></span>
                     </label></div>
-                </form>
-                <div class="modal-options">
-                    <button class="closeButton btn-style">Close</button>
-                    <button class="add-btn btn-style">Add new book</button>
+                    <div class="modal-options">
+                        <p class="validationTxt valHide" >One or more inputs are not valid</p>
+                        <button class="closeButton btn-style">Close</button>
+                        <button class="add-btn btn-style" type="button">Add new book</button>       
+                </form>              
         </div></div>
-        </dialog>
-        
-        
+        </dialog>     
     </main>
-
-    
-
 </body>
 </html>
