@@ -8,12 +8,22 @@ const pagesBox = document.getElementById("book-pages");
 const statusBox = document.querySelector('input[type="checkbox"]');
 const coverBox = document.getElementById("book-img");
 
-function Book(title, author, pages, status, img) {
+/* function Book(title, author, pages, status, img) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
   this.img = img;
+} */
+
+class Book {
+  constructor(title, author, pages, status, img) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+    this.img = img;
+  }
 }
 
 //Create toggle read status on Book prototype
